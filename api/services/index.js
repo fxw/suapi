@@ -37,6 +37,7 @@ class Parser {
         const $ = cheerio.load(html)
         
        // this.product.name = 
+       this.product.name = $("body").find('span#ctl00_MainContentContainer_lblItemTitle').html();
         this.product.price = $("body").find('span#ctl00_MainContentContainer_lblItemPrice').html();
 
         this.product.salesPrice = $("body").find('span#ctl00_MainContentContainer_lblSalePrice').html();
