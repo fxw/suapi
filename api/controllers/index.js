@@ -3,33 +3,18 @@
 
 const svc = require('../services')
 
-const getTaxRate = (req, res) => {
-    const state = req.params.stateName
-    svc.scrapeTaxRates(state, stateUrls[state.toLowerCase()], (rates) => {
-        const rate = rates.find(rate => {
-            return rate.city.toLowerCase() === req.params.cityName.toLowerCase() 
-        })
-        res.send(rate)
-    })
-}
-
-const calculateTaxes = (req, res) => {
-    const state = req.params.stateName
-    svc.scrapeTaxRates(state, stateUrls[state.toLowerCase()], (rates) => {
-        const rate = rates.find(rate => {
-            return rate.city.toLowerCase() === req.params.cityName.toLowerCase() 
-        })
-        res.send(rate.calculateTax(parseFloat(req.params.amount)))
+const getPrice = (req, res) => {
+    const productId = req.params.productId
+    svc.scrapePrices(productId, SuUrls.productUrl, (product) => { res.send(product);
     })
 }
 
 
-const stateUrls = {
-    nebraska: 'http://www.revenue.nebraska.gov/question/sales.html'
+
+const SuUrls = {
+    productUrl: 'https://www2.stampinup.com/ecweb/product/'
 }
 
 module.exports = {
-    getTaxRate,
-    calculateTaxes,
-    stateUrls
+    getPrice
 }
