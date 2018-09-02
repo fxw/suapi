@@ -1,6 +1,3 @@
-
-
-const https = require('follow-redirects').https
 const request = require('request');
 const cheerio = require('cheerio')
 const Product = require('../models')
